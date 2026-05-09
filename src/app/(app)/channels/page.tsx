@@ -82,12 +82,12 @@ function ChannelsPageInner() {
 
   // CR-2: Platform-specific URL/ID validation patterns
   const PLATFORM_VALIDATION: Record<string, { pattern: RegExp; hint: string }> = {
-    spotify: { pattern: /open\.spotify\.com\/(artist|show|album)\/[A-Za-z0-9]+/, hint: "Must be a Spotify URL: open.spotify.com/artist/... or open.spotify.com/show/..." },
+    spotify: { pattern: /(open\.spotify\.com\/(artist|show|album)\/[A-Za-z0-9]+)|(creators\.spotify\.com\/pod\/profile\/[^/]+\/episodes\/[^/]+)/, hint: "Must be a Spotify URL: open.spotify.com/show/... or creators.spotify.com/pod/profile/.../episodes/..." },
     applemusic: { pattern: /music\.apple\.com\/[a-z]{2}\/(artist|album|podcast)\/[^/]+\/\d+/, hint: "Must be an Apple Music URL: music.apple.com/us/artist/name/123" },
-    deezer: { pattern: /deezer\.com\/(artist|podcast|album)\/\d+/, hint: "Must be a Deezer URL: deezer.com/artist/12345" },
-    soundcloud: { pattern: /soundcloud\.com\/[A-Za-z0-9_-]+/, hint: "Must be a SoundCloud URL: soundcloud.com/your-profile" },
+    deezer: { pattern: /deezer\.com\/(artist|podcast|album|show)\/\d+/, hint: "Must be a Deezer URL: deezer.com/show/12345 or deezer.com/artist/12345" },
+    soundcloud: { pattern: /(soundcloud\.com\/[A-Za-z0-9_-]+)|(on\.soundcloud\.com\/[A-Za-z0-9]+)/, hint: "Must be a SoundCloud URL: soundcloud.com/your-profile or on.soundcloud.com/..." },
     tunein: { pattern: /tunein\.com\/(radio|stations|podcasts)\/[A-Za-z0-9_-]+/, hint: "Must be a TuneIn URL: tunein.com/radio/..." },
-    amazonmusic: { pattern: /music\.amazon\.com\/artists\/[A-Za-z0-9]+|^[A-Za-z0-9]{10,30}$/, hint: "Must be an Amazon Music artist URL or artist ID" },
+    amazonmusic: { pattern: /(music\.amazon\.com\/artists\/[A-Za-z0-9]+)|(music\.amazon\.com\/podcasts\/[A-Za-z0-9-]+\/[^/?#]+)|^[A-Za-z0-9]{10,30}$/, hint: "Must be an Amazon Music artist URL, podcast URL, or artist ID" },
     iheartradio: { pattern: /iheart\.com\/(podcast|artist|radio)\/[^/]+/, hint: "Must be an iHeartRadio URL: iheart.com/podcast/..." },
     audiomack: { pattern: /audiomack\.com\/[A-Za-z0-9_-]+/, hint: "Must be an Audiomack URL: audiomack.com/your-profile" },
     podchaser: { pattern: /podchaser\.com\/(podcasts|creators)\/[^/]+-\d+/, hint: "Must be a Podchaser URL: podchaser.com/podcasts/name-12345" },
