@@ -7,9 +7,9 @@ import Providers from './providers'
 const inter = Inter({ variable: "--font-sans", weight: ["400","500","600","700","800"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Flowpload — Upload Once. Flow Everywhere.",
+  title: "Flowpload — AI-Powered Podcast Distribution & Repurposing",
   description:
-    "Transform your videos, podcasts, and posts into global hits — automatically localized, trend-tuned, and adapted for every audience.",
+    "Upload your episode once. Flowpload distributes it to every podcast platform and automatically generates clips, captions, and shorts — powered by AI.",
   icons: {
     icon: "/flowuplaod.png",
   },

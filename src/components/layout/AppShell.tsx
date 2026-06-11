@@ -12,6 +12,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import SettingsIcon from "@mui/icons-material/Settings";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import MicIcon from "@mui/icons-material/Mic";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
+import ContentCutIcon from "@mui/icons-material/ContentCut";
 import ThemeToggle from "@/components/ThemeToggle";
 import Logo from "@/components/Logo";
 
@@ -42,6 +45,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       items.push({ href: "/admin/users", label: "Admin", Icon: PeopleIcon });
     } else {
       items.push({ href: "/dashboard", label: "Dashboard", Icon: HomeIcon });
+      items.push({ href: "/podcasts", label: "Podcasts", Icon: MicIcon });
+      items.push({ href: "/episodes", label: "Episodes", Icon: LibraryMusicIcon });
+      items.push({ href: "/clips", label: "Clips", Icon: ContentCutIcon });
       items.push({ href: "/channels", label: "Channels", Icon: DnsIcon });
       items.push({ href: "/uploads", label: "Uploads", Icon: CloudUploadIcon });
       items.push({ href: "/automation", label: "Automation", Icon: SmartToyIcon });

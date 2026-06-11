@@ -5,13 +5,11 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import CookieConsent from "@/components/CookieConsent";
-import ThemeToggle from "@/components/ThemeToggle";
 import MarketingNav from "@/components/layout/MarketingNav";
 import MarketingFooter from "@/components/layout/MarketingFooter";
 import { getToken } from "@/lib/auth";
 
 // MUI Icons
-import LanguageIcon from "@mui/icons-material/Language";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import RecordVoiceOverIcon from "@mui/icons-material/RecordVoiceOver";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
@@ -145,19 +143,19 @@ function Hero() {
                 <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full opacity-75" style={{ background: ACCENT }} />
                 <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: PRIMARY }} />
               </span>
-              Creator automation for global reach
+              AI-powered podcast distribution
             </div>
 
             <h1 className="mt-4 md:mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white drop-shadow-2xl leading-tight max-w-4xl">
-              Upload Once.{" "}
+              Upload your episode.{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6C63FF] via-[#FF6584] to-[#6C63FF] animate-gradient">
-                Speak Every Language.
+                Clips, captions, and reach
               </span>{" "}
-              Rank Everywhere.
+              — automatic.
             </h1>
 
             <p className="mt-5 md:mt-6 text-lg sm:text-xl md:text-2xl lg:text-xl text-white/90 drop-shadow-lg leading-relaxed max-w-2xl">
-              Transform your videos, podcasts, and stories into global hits — automatically localized, trend-tuned, and adapted for every audience.
+              Flowpload publishes your podcast to every major platform and turns each episode into social clips, burned-in captions, and shorts — all AI-generated, zero extra work.
             </p>
 
             {/* Call-to-action Section */}
@@ -232,15 +230,15 @@ function Problem() {
             The Problem We Solve
           </div>
           <blockquote className="text-xl sm:text-3xl leading-relaxed text-[#111827] dark:text-white/90 font-bold">
-            "Creators waste{" "}
+            &ldquo;Podcasters waste{" "}
             <span className="relative inline-block">
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">hours</span>
               <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded" />
             </span>
-            {" "}reposting the same content across platforms."
+            {" "}submitting feeds, cutting clips, and writing captions manually.&rdquo;
           </blockquote>
           <p className="mt-6 text-lg text-[#111827]/70 dark:text-white/70">
-            Our Australian-built software automates it — reuploads, localizes, and schedules everything for you.
+            Flowpload does all of it automatically — one upload distributes your episode everywhere and generates all the social content you need.
           </p>
         </div>
         <div className="relative" data-aos="fade-left">
@@ -377,7 +375,7 @@ function Testimonials() {
               </div>
 
               <p className="text-lg sm:text-xl text-[#111827] dark:text-white/90 leading-relaxed mb-6 italic">
-                "{testimonials[activeIndex].content}"
+                &ldquo;{testimonials[activeIndex].content}&rdquo;
               </p>
 
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold">
@@ -453,7 +451,7 @@ function HowItWorks() {
             </span>
           </h2>
           <p className="mt-4 text-lg text-[#111827]/70 dark:text-white/70 max-w-2xl mx-auto">
-            Watch how Flowpload transforms your content from a single upload to global distribution across 10+ platforms in minutes.
+            Upload one episode and watch Flowpload distribute it everywhere, generate clips with captions, and create social content — automatically.
           </p>
         </div>
 
@@ -471,7 +469,7 @@ function HowItWorks() {
                 </div>
                 <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: "Montserrat, sans-serif" }}>Explainer Video Coming Soon</h3>
                 <p className="text-white/60 text-sm max-w-sm text-center px-4">
-                  A full walkthrough of the Flowpload platform is being filmed. Sign up to get notified when it's live.
+                  A full walkthrough of the Flowpload platform is being filmed. Sign up to get notified when it&apos;s live.
                 </p>
                 <Link
                   href="/signup"
@@ -533,60 +531,60 @@ function Features() {
 
   const features = [
     {
-      title: "Smart Localization",
-      desc: "AI-powered localization that adapts phrasing and tone per region. Your content feels native everywhere.",
-      Icon: LanguageIcon,
+      title: "Podcast Distribution",
+      desc: "Crimson-hosted RSS feed auto-submitted to Apple Podcasts, Spotify, Amazon Music, iHeartRadio, Deezer, TuneIn, and Podchaser.",
+      Icon: MicIcon,
       color: "from-purple-500 to-pink-500",
-      bullets: ["50+ languages", "Cultural phrasing", "Time-zone aware scheduling"]
+      bullets: ["7 platforms, one click", "iTunes-compliant RSS", "Auto-updating feed"]
     },
     {
-      title: "Trend-Aware Optimization",
-      desc: "Keep titles, tags and thumbnails aligned with live global trends for maximum visibility.",
-      Icon: TrendingUpIcon,
+      title: "AI Clip Generation",
+      desc: "Every episode is automatically sliced into short-form clips with the most engaging moments highlighted.",
+      Icon: MovieFilterIcon,
       color: "from-blue-500 to-cyan-500",
-      bullets: ["Live trend monitoring", "Smart hashtagging", "Title scoring"]
+      bullets: ["Highlights auto-detected", "9:16, 1:1, 4:5, 16:9", "Ready to post"]
     },
     {
-      title: "Multi-Platform Sync",
-      desc: "One upload = instant presence everywhere. Publish to Audiomack, Spotify, Apple Music and more.",
-      Icon: SyncAltIcon,
-      color: "from-green-500 to-emerald-500",
-      bullets: ["Single source workflow", "Reliable retries", "Platform-specific metadata"]
-    },
-    {
-      title: "Voice Consistency",
-      desc: "Maintain your creative style and brand voice across platforms and languages.",
+      title: "Burned-in Captions",
+      desc: "Whisper AI transcribes your episode and burns styled captions into every clip for silent-scroll viewers.",
       Icon: RecordVoiceOverIcon,
+      color: "from-green-500 to-emerald-500",
+      bullets: ["Word-level accuracy", "Custom font & color", "SRT/VTT download"]
+    },
+    {
+      title: "Social-Ready Exports",
+      desc: "Export every clip in the right format for every platform — Reels, Shorts, TikTok, Twitter, and LinkedIn.",
+      Icon: SyncAltIcon,
       color: "from-orange-500 to-red-500",
-      bullets: ["Style guardrails", "Glossary support", "Reviewer workflows"]
+      bullets: ["Platform presets", "Batch export", "One-click share"]
     },
     {
-      title: "Smart Testing",
-      desc: "Run A/B tests on thumbnails and titles automatically and ship the winner.",
-      Icon: AutoGraphIcon,
+      title: "YouTube Audiograms",
+      desc: "Turn audio-only episodes into watch-worthy YouTube videos with waveform animation and artwork overlay.",
+      Icon: MusicNoteIcon,
       color: "from-indigo-500 to-blue-500",
-      bullets: ["Auto-switch winners", "CTR tracking", "Variant insights"]
+      bullets: ["Auto-generated video", "Artwork + waveform", "Direct YouTube upload"]
     },
     {
-      title: "Network Boost",
-      desc: "Leverage global creator data to amplify reach and discoverability.",
+      title: "Promotion Automation",
+      desc: "When an episode publishes, Flowpload auto-tweets, posts to Instagram, and schedules LinkedIn — with AI-written copy.",
       Icon: RocketLaunchIcon,
       color: "from-pink-500 to-rose-500",
-      bullets: ["Audience lookalikes", "Timing optimization", "Content clusters"]
+      bullets: ["Twitter, IG, LinkedIn", "AI-written posts", "Custom scheduling"]
     },
     {
-      title: "Gamified Growth",
-      desc: "Insights and achievements that guide you to the next milestone, faster.",
-      Icon: EmojiEventsIcon,
+      title: "Analytics Dashboard",
+      desc: "Track streams, downloads, and audience growth across every podcast platform in one unified view.",
+      Icon: AutoGraphIcon,
       color: "from-yellow-500 via-orange-500 to-red-500",
-      bullets: ["Milestone tracking", "Actionable tips", "Weekly goals"]
+      bullets: ["Multi-platform stats", "Episode performance", "Audience trends"]
     },
     {
-      title: "Brand Safety",
-      desc: "Consistency and control over tone, message and intent worldwide.",
+      title: "Brand Consistency",
+      desc: "Your podcast artwork, tone, and intro music stay consistent across every platform and every clip.",
       Icon: ShieldIcon,
       color: "from-teal-500 to-cyan-500",
-      bullets: ["Approval flows", "Audit logs", "Policy templates"]
+      bullets: ["Artwork sync", "Intro/outro templates", "Voice style guide"]
     },
   ];
 
@@ -604,10 +602,10 @@ function Features() {
       <div className="container py-20 my-16 md:my-48 relative z-10">
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl sm:text-5xl font-bold text-[#111827] dark:text-white">
-            Built for <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Modern Creators</span>
+            The complete <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">AI Podcast OS</span>
           </h2>
           <p className="mt-4 text-lg text-[#111827]/70 dark:text-white/70 max-w-2xl mx-auto">
-            Everything you need to scale your content globally, all in one powerful platform
+            Everything from RSS distribution to clips, captions, and analytics — in one platform
           </p>
         </div>
 
@@ -917,7 +915,7 @@ function LiveActivity() {
           <h2 className="text-3xl sm:text-5xl font-bold text-[#111827] dark:text-white mb-4">
             Join Thousands of Active Creators
           </h2>
-          <p className="text-lg text-[#111827]/70 dark:text-white/70">See what's happening right now</p>
+          <p className="text-lg text-[#111827]/70 dark:text-white/70">See what&apos;s happening right now</p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-3" data-aos="fade-up">
@@ -983,10 +981,10 @@ function WhyChooseUs() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const bullets = [
-    { text: "Feels native in every market", icon: PublicIcon, detail: "AI adapts tone and phrasing for 50+ regions" },
-    { text: "Real-time trend awareness", icon: TrendingUpIcon, detail: "Monitor global trends and optimize instantly" },
-    { text: "Proven 25–50% CTR boost", icon: AutoGraphIcon, detail: "Data-backed results from 10,000+ creators" },
-    { text: "Zero setup friction", icon: RocketLaunchIcon, detail: "Connect channels and publish in minutes" },
+    { text: "One upload, every podcast platform", icon: PublicIcon, detail: "Apple, Spotify, Amazon, iHeart, Deezer, TuneIn, Podchaser — all from one RSS feed" },
+    { text: "AI clips in minutes, not hours", icon: AutoGraphIcon, detail: "Whisper transcription + AI moment detection generates social-ready clips automatically" },
+    { text: "Burned-in captions on every clip", icon: RecordVoiceOverIcon, detail: "Styled captions increase watch time by 40% on silent-scroll feeds" },
+    { text: "Zero setup friction", icon: RocketLaunchIcon, detail: "Create your podcast and connect all platforms in under 3 minutes" },
   ];
 
   return (
@@ -997,8 +995,8 @@ function WhyChooseUs() {
 
       <div className="container py-20 my-16 md:my-48 relative z-10">
         <h2 className="text-3xl sm:text-5xl font-bold text-[#111827] dark:text-white text-center max-w-3xl mx-auto mb-4">
-          Because our software doesn't just distribute — it{" "}
-          <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">understands audiences</span>.
+          Because great podcasts deserve{" "}
+          <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">automatic reach</span>.
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto mt-12">
           {bullets.map(({ text, icon: Icon, detail }, i) => (
@@ -1058,10 +1056,10 @@ function WhyChooseUs() {
 
 function UseCases() {
   const cases = [
-    { Icon: MovieFilterIcon, title: "Video Creators", desc: "Localized thumbnails & hashtags", color: "from-red-500 to-orange-500", bg: "from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20", border: "border-red-200/50 dark:border-red-500/30" },
-    { Icon: MusicNoteIcon, title: "Musicians", desc: "Multilingual metadata & region-aware drops", color: "from-purple-500 to-pink-500", bg: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20", border: "border-purple-200/50 dark:border-purple-500/30" },
-    { Icon: MicIcon, title: "Podcasters", desc: "Auto-transcripts & cultural phrasing", color: "from-blue-500 to-cyan-500", bg: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20", border: "border-blue-200/50 dark:border-blue-500/30" },
-    { Icon: WorkspacesIcon, title: "Agencies", desc: "Multi-client scheduling & analytics", color: "from-green-500 to-emerald-500", bg: "from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20", border: "border-green-200/50 dark:border-green-500/30" },
+    { Icon: MicIcon, title: "Podcasters", desc: "RSS distribution + AI clips + captions on autopilot", color: "from-purple-500 to-pink-500", bg: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20", border: "border-purple-200/50 dark:border-purple-500/30" },
+    { Icon: MovieFilterIcon, title: "Video Creators", desc: "Turn long videos into short-form social clips", color: "from-red-500 to-orange-500", bg: "from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20", border: "border-red-200/50 dark:border-red-500/30" },
+    { Icon: MusicNoteIcon, title: "Musicians", desc: "Distribute tracks to Spotify, Apple Music & more", color: "from-blue-500 to-cyan-500", bg: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20", border: "border-blue-200/50 dark:border-blue-500/30" },
+    { Icon: WorkspacesIcon, title: "Agencies", desc: "Multi-client podcast management & analytics", color: "from-green-500 to-emerald-500", bg: "from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20", border: "border-green-200/50 dark:border-green-500/30" },
   ];
   return (
     <section className="bg-[#F9FAFB] dark:bg-gray-950 relative overflow-hidden">
@@ -1072,9 +1070,9 @@ function UseCases() {
       <div className="container py-20 my-16 md:my-48 relative z-10">
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-3xl sm:text-5xl font-bold text-[#111827] dark:text-white mb-4">
-            Who It's <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">For</span>
+            Who It&apos;s <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">For</span>
           </h2>
-          <p className="text-lg text-[#111827]/70 dark:text-white/70">Built for creators, agencies, and brands of all sizes</p>
+          <p className="text-lg text-[#111827]/70 dark:text-white/70">Built for podcasters, creators, and agencies of all sizes</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
           {cases.map(({ Icon, title, desc, color, bg, border }, i) => (
@@ -1142,7 +1140,7 @@ function Pricing() {
           <h2 className="text-3xl sm:text-5xl font-bold text-[#111827] dark:text-white mb-4">
             Simple, <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Transparent</span> Pricing
           </h2>
-          <p className="text-lg text-[#111827]/70 dark:text-white/70">Choose the plan that's right for you</p>
+          <p className="text-lg text-[#111827]/70 dark:text-white/70">Choose the plan that&apos;s right for you</p>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {tiers.map((t, index) => (
@@ -1236,11 +1234,11 @@ function FinalCTA() {
           </div>
 
           <h2 className="text-4xl sm:text-6xl font-extrabold text-white mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
-            Go Global in Minutes <br className="hidden sm:block" />— Not Months.
+            Publish once. <br className="hidden sm:block" />Repurpose everywhere.
           </h2>
 
           <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            Start reaching audiences worldwide with intelligent automation. No credit card required.
+            Upload your episode and Flowpload handles distribution, clips, captions, and promotion — automatically. No credit card required.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8" data-aos="zoom-in" data-aos-delay="300">

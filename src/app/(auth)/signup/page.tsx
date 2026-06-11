@@ -36,7 +36,7 @@ export default function SignupPage() {
       saveToken(res.data.token);
       if (res?.data?.user) saveUserProfile(res.data.user);
       const goAdmin = isAdminRead();
-      router.push(goAdmin ? "/admin/dashboard" : "/dashboard");
+      router.push(goAdmin ? "/admin/dashboard" : "/onboarding");
     } catch (err: any) {
       const errorData = err?.response?.data?.error;
       setError(typeof errorData === "string" ? errorData : "Google sign-up failed");
@@ -60,7 +60,7 @@ export default function SignupPage() {
       const res = await api.post("/api/auth/login", { email, password });
       saveToken(res.data.token);
       const goAdmin = isAdminRead();
-      router.push(goAdmin ? "/admin/dashboard" : "/dashboard");
+      router.push(goAdmin ? "/admin/dashboard" : "/onboarding");
     } catch (err: any) {
       const errorData = err?.response?.data?.error;
       if (typeof errorData === 'string') {

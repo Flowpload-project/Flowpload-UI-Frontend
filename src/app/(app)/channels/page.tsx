@@ -15,6 +15,8 @@ const PLATFORMS = [
   { id: "youtube", name: "YouTube", color: "#FF0000" },
   { id: "spotify", name: "Spotify", color: "#1DB954" },
   { id: "applemusic", name: "Apple Music", color: "#FC3C44" },
+  { id: "applepodcasts", name: "Apple Podcasts", color: "#9B59B6" },
+  { id: "spotifypodcasts", name: "Spotify for Podcasters", color: "#1ED760" },
   { id: "deezer", name: "Deezer", color: "#FF6700" },
   { id: "soundcloud", name: "SoundCloud", color: "#FF5500" },
   { id: "tunein", name: "TuneIn", color: "#14D8CC" },
@@ -91,6 +93,8 @@ function ChannelsPageInner() {
     iheartradio: { pattern: /iheart\.com\/(podcast|artist|radio)\/[^/]+/, hint: "Must be an iHeartRadio URL: iheart.com/podcast/..." },
     audiomack: { pattern: /audiomack\.com\/[A-Za-z0-9_-]+/, hint: "Must be an Audiomack URL: audiomack.com/your-profile" },
     podchaser: { pattern: /podchaser\.com\/(podcasts|creators)\/[^/]+-\d+/, hint: "Must be a Podchaser URL: podchaser.com/podcasts/name-12345" },
+    applepodcasts: { pattern: /podcasts\.apple\.com\/[a-z]{2}\/podcast\/[^/]+\/id\d+/, hint: "Must be an Apple Podcasts URL: podcasts.apple.com/us/podcast/name/id123456789" },
+    spotifypodcasts: { pattern: /open\.spotify\.com\/show\/[A-Za-z0-9]+/, hint: "Must be a Spotify show URL: open.spotify.com/show/..." },
   };
 
   function validateChannelInput(provider: string, channelId: string): string | null {
