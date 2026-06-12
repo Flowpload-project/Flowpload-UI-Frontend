@@ -301,6 +301,10 @@ export default function OnboardingPage() {
             <strong>What happens next:</strong> Click &quot;Mark all as connected&quot; once you&apos;ve submitted to the platforms above. We&apos;ll track them in your dashboard. Approvals on each platform usually take 24-48h.
           </div>
 
+          <div className="rounded-lg bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 p-3 text-xs text-yellow-800 dark:text-yellow-200">
+            <strong>Phase 2 — Coming soon:</strong> YouTube, SoundCloud &amp; Audiomack direct upload integrations are in development and will be available soon.
+          </div>
+
           <div className="flex gap-3">
             <button
               onClick={() => router.push("/dashboard")}

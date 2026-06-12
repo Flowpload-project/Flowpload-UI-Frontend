@@ -11,20 +11,23 @@ type PlanData = { plan: any; usage: any; channelCount: number; channelLimit: num
 
 const fetcher = (url: string) => api.get(url).then((r) => r.data);
 
-const PLATFORMS = [
-  { id: "youtube", name: "YouTube", color: "#FF0000" },
-  { id: "spotify", name: "Spotify", color: "#1DB954" },
-  { id: "applemusic", name: "Apple Music", color: "#FC3C44" },
+const PODCAST_PLATFORMS = [
   { id: "applepodcasts", name: "Apple Podcasts", color: "#9B59B6" },
   { id: "spotifypodcasts", name: "Spotify for Podcasters", color: "#1ED760" },
-  { id: "deezer", name: "Deezer", color: "#FF6700" },
-  { id: "soundcloud", name: "SoundCloud", color: "#FF5500" },
-  { id: "tunein", name: "TuneIn", color: "#14D8CC" },
   { id: "amazonmusic", name: "Amazon Music", color: "#00A8E1" },
   { id: "iheartradio", name: "iHeartRadio", color: "#C6002B" },
-  { id: "audiomack", name: "Audiomack", color: "#FFA200" },
+  { id: "deezer", name: "Deezer", color: "#FF6700" },
+  { id: "tunein", name: "TuneIn", color: "#14D8CC" },
   { id: "podchaser", name: "Podchaser", color: "#5C68E2" },
 ];
+
+const UPLOAD_PLATFORMS = [
+  { id: "youtube", name: "YouTube", color: "#FF0000" },
+  { id: "soundcloud", name: "SoundCloud", color: "#FF5500" },
+  { id: "audiomack", name: "Audiomack", color: "#FFA200" },
+];
+
+const ALL_PLATFORMS = [...PODCAST_PLATFORMS, ...UPLOAD_PLATFORMS];
 
 function ChannelsPageInner() {
   const searchParams = useSearchParams();
@@ -42,7 +45,7 @@ function ChannelsPageInner() {
     const connected = searchParams.get("connected");
     const oauthErr = searchParams.get("oauth_error");
     if (connected) {
-      const platformName = PLATFORMS.find((p) => p.id === connected)?.name || connected;
+      const platformName = ALL_PLATFORMS.find((p) => p.id === connected)?.name || connected;
       setSuccessMsg(`${platformName} connected successfully!`);
       mutate();
       window.history.replaceState({}, "", "/channels");
@@ -221,82 +224,76 @@ function ChannelsPageInner() {
                 <EmptyState
                   icon="🎧"
                   title="No Channels Connected Yet"
-                  description="Connect your first platform to start distributing your content globally. Choose from YouTube, Spotify, Apple Music, and more!"
+                  description="Submit your RSS feed to podcast directories. Once submitted, new episodes appear everywhere automatically."
                   actionLabel="Connect Your First Channel"
                   onAction={openAddModal}
                 />
               </div>
             )}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {PLATFORMS.map((platform, idx) => {
-                const connected = connectedProviders.has(platform.id.toLowerCase());
-                const channel = (channels || []).find((c) => c.provider.toLowerCase() === platform.id.toLowerCase());
-                return (
-                  <div
-                    key={platform.id}
-                    data-aos="fade-up"
-                    data-aos-delay={idx * 50}
-                    className="bg-white dark:bg-gray-800 rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-md hover:shadow-lg transition-all hover:scale-105"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg"
-                        style={{ backgroundColor: platform.color }}
-                      >
-                        {platform.name.charAt(0)}
-                      </div>
-                      {connected ? (
-                        <span className="text-xs font-semibold px-2 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">
-                          ✅ Connected
-                        </span>
-                      ) : (
-                        <span className="text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
-                          ❌ Not Connected
-                        </span>
-                      )}
-                    </div>
-                    <div className="text-base font-semibold mb-1 dark:text-white" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                      {platform.name}
-                    </div>
-                    {connected && channel && (
-                      <>
-                        <div className="text-sm text-black/60 dark:text-white/60 mb-2">{channel.displayName}</div>
-                        {channel.lastSyncedAt && (
-                          <div className="text-xs text-black/50 dark:text-white/50 mb-3">
-                            Synced: {new Date(channel.lastSyncedAt).toLocaleDateString()}
-                          </div>
-                        )}
-                        <div className="flex gap-2">
-                          <button
-                            disabled={busy}
-                            onClick={() => handleRefresh(channel.id)}
-                            className="flex-1 text-xs px-2 py-1.5 rounded-md border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-50"
-                          >
-                            Refresh
-                          </button>
-                          <button
-                            disabled={busy}
-                            onClick={() => handleDisconnect(channel.id)}
-                            className="flex-1 text-xs px-2 py-1.5 rounded-md border border-red-200 dark:border-red-400/40 text-red-600 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20 disabled:opacity-50"
-                          >
-                            Disconnect
-                          </button>
-                        </div>
-                      </>
-                    )}
-                    {!connected && (
-                      platform.id === "youtube" ? (
-                        // YouTube: real OAuth button
-                        <button
-                          disabled={busy}
-                          onClick={() => handleOAuthConnect("youtube")}
-                          className="w-full mt-3 text-xs px-3 py-2 rounded-md font-medium text-white hover:brightness-95 disabled:opacity-50"
-                          style={{ backgroundColor: "#FFB400" }}
+            {/* Podcast Directories */}
+            <div className="space-y-3">
+              <div>
+                <h2 className="text-lg font-bold dark:text-white" style={{ fontFamily: "Montserrat, sans-serif" }}>Podcast Directories</h2>
+                <p className="text-xs text-black/50 dark:text-white/50 mt-0.5">Submit your RSS feed once — episodes auto-distribute everywhere.</p>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {PODCAST_PLATFORMS.map((platform, idx) => {
+                  const connected = connectedProviders.has(platform.id.toLowerCase());
+                  const channel = (channels || []).find((c) => c.provider.toLowerCase() === platform.id.toLowerCase());
+                  return (
+                    <div
+                      key={platform.id}
+                      data-aos="fade-up"
+                      data-aos-delay={idx * 50}
+                      className="bg-white dark:bg-gray-800 rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-md hover:shadow-lg transition-all hover:scale-105"
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                          style={{ backgroundColor: platform.color }}
                         >
-                          Connect with YouTube
-                        </button>
-                      ) : (
-                        // All other platforms: open the manual connect modal pre-filled for this platform
+                          {platform.name.charAt(0)}
+                        </div>
+                        {connected ? (
+                          <span className="text-xs font-semibold px-2 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">
+                            ✅ Connected
+                          </span>
+                        ) : (
+                          <span className="text-xs font-semibold px-2 py-1 rounded-full bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                            ❌ Not Connected
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-base font-semibold mb-1 dark:text-white" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                        {platform.name}
+                      </div>
+                      {connected && channel && (
+                        <>
+                          <div className="text-sm text-black/60 dark:text-white/60 mb-2">{channel.displayName}</div>
+                          {channel.lastSyncedAt && (
+                            <div className="text-xs text-black/50 dark:text-white/50 mb-3">
+                              Synced: {new Date(channel.lastSyncedAt).toLocaleDateString()}
+                            </div>
+                          )}
+                          <div className="flex gap-2">
+                            <button
+                              disabled={busy}
+                              onClick={() => handleRefresh(channel.id)}
+                              className="flex-1 text-xs px-2 py-1.5 rounded-md border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-50"
+                            >
+                              Refresh
+                            </button>
+                            <button
+                              disabled={busy}
+                              onClick={() => handleDisconnect(channel.id)}
+                              className="flex-1 text-xs px-2 py-1.5 rounded-md border border-red-200 dark:border-red-400/40 text-red-600 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20 disabled:opacity-50"
+                            >
+                              Disconnect
+                            </button>
+                          </div>
+                        </>
+                      )}
+                      {!connected && (
                         <button
                           disabled={busy}
                           onClick={() => openAddModal(platform.id)}
@@ -305,11 +302,45 @@ function ChannelsPageInner() {
                         >
                           Connect
                         </button>
-                      )
-                    )}
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Upload Platforms — Coming Soon */}
+            <div className="space-y-3 mt-8">
+              <div>
+                <h2 className="text-lg font-bold dark:text-white" style={{ fontFamily: "Montserrat, sans-serif" }}>Upload Platforms</h2>
+                <p className="text-xs text-black/50 dark:text-white/50 mt-0.5">Direct upload integrations — coming in Phase 2.</p>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {UPLOAD_PLATFORMS.map((platform, idx) => (
+                  <div
+                    key={platform.id}
+                    data-aos="fade-up"
+                    data-aos-delay={idx * 50}
+                    className="bg-white dark:bg-gray-800 rounded-2xl border border-black/5 dark:border-white/10 p-5 shadow-md opacity-60"
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg grayscale"
+                        style={{ backgroundColor: platform.color }}
+                      >
+                        {platform.name.charAt(0)}
+                      </div>
+                      <span className="text-xs font-semibold px-2 py-1 rounded-full bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300">
+                        Coming Soon
+                      </span>
+                    </div>
+                    <div className="text-base font-semibold mb-1 dark:text-white" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                      {platform.name}
+                    </div>
+                    <p className="text-xs text-black/40 dark:text-white/40 mt-1">Available in Phase 2</p>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </>
         )}
@@ -318,7 +349,7 @@ function ChannelsPageInner() {
       {/* Add Platform Modal (for non-YouTube platforms) */}
       {showAddModal && (() => {
         const preselected = showAddModal !== "generic" ? showAddModal : null;
-        const platformLabel = preselected ? PLATFORMS.find((p) => p.id === preselected)?.name : null;
+        const platformLabel = preselected ? ALL_PLATFORMS.find((p) => p.id === preselected)?.name : null;
         return (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40" onClick={() => { setShowAddModal(null); setConnectError(null); }}>
             <div
@@ -347,7 +378,7 @@ function ChannelsPageInner() {
                     <label className="block text-sm font-medium mb-1 dark:text-white/80">Platform</label>
                     <select name="provider" required onChange={() => setConnectError(null)} className="w-full rounded-lg border border-black/20 dark:border-white/20 bg-white dark:bg-gray-800 text-[#111827] dark:text-white px-3 py-2">
                       <option value="">— Select Platform —</option>
-                      {PLATFORMS.filter((p) => p.id !== "youtube").map((p) => (
+                      {PODCAST_PLATFORMS.map((p) => (
                         <option key={p.id} value={p.id}>{p.name}</option>
                       ))}
                     </select>

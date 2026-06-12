@@ -695,16 +695,16 @@ function Features() {
 // Platform Logo Carousel
 function PlatformCarousel() {
   const platforms = [
-    { name: "YouTube", color: "#FF0000", icon: "🎥" },
-    { name: "Apple Music", color: "#FA243C", icon: "🎵" },
-    { name: "Audiomack", color: "#E4405F", icon: "🎧" },
-    { name: "Podchaser", color: "#7C3AED", icon: "🎙️" },
+    { name: "Apple Podcasts", color: "#9B59B6", icon: "🎙️" },
+    { name: "Spotify for Podcasters", color: "#1ED760", icon: "🎧" },
+    { name: "Amazon Music", color: "#00A8E1", icon: "🎼" },
     { name: "iHeartRadio", color: "#C6002B", icon: "📻" },
-    { name: "Spotify", color: "#1DB954", icon: "🎶" },
+    { name: "Deezer", color: "#FF6700", icon: "💿" },
+    { name: "TuneIn", color: "#14D8CC", icon: "📡" },
+    { name: "Podchaser", color: "#5C68E2", icon: "🎙️" },
+    { name: "YouTube", color: "#FF0000", icon: "🎥" },
     { name: "SoundCloud", color: "#FF5500", icon: "☁️" },
-    { name: "Amazon Music", color: "#FF9900", icon: "🎼" },
-    { name: "Deezer", color: "#FF6600", icon: "💿" },
-    { name: "TuneIn", color: "#14D8CC", icon: "📡" }
+    { name: "Audiomack", color: "#FFA200", icon: "🎧" },
   ];
 
   return (
@@ -1058,8 +1058,8 @@ function UseCases() {
   const cases = [
     { Icon: MicIcon, title: "Podcasters", desc: "RSS distribution + AI clips + captions on autopilot", color: "from-purple-500 to-pink-500", bg: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20", border: "border-purple-200/50 dark:border-purple-500/30" },
     { Icon: MovieFilterIcon, title: "Video Creators", desc: "Turn long videos into short-form social clips", color: "from-red-500 to-orange-500", bg: "from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20", border: "border-red-200/50 dark:border-red-500/30" },
-    { Icon: MusicNoteIcon, title: "Musicians", desc: "Distribute tracks to Spotify, Apple Music & more", color: "from-blue-500 to-cyan-500", bg: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20", border: "border-blue-200/50 dark:border-blue-500/30" },
     { Icon: WorkspacesIcon, title: "Agencies", desc: "Multi-client podcast management & analytics", color: "from-green-500 to-emerald-500", bg: "from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20", border: "border-green-200/50 dark:border-green-500/30" },
+    { Icon: RocketLaunchIcon, title: "Indie Creators", desc: "Launch your podcast and grow your audience fast", color: "from-orange-500 to-yellow-500", bg: "from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20", border: "border-orange-200/50 dark:border-orange-500/30" },
   ];
   return (
     <section className="bg-[#F9FAFB] dark:bg-gray-950 relative overflow-hidden">
